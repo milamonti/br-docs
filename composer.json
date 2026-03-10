@@ -1,0 +1,17 @@
+{
+  "name": "validation/br-docs",
+  "description": "Validação de documentos brasileiros",
+  "keywords": [
+    "validation",
+    "br-docs",
+    "cpf",
+    "cnpj",
+    "cpfcnpj"
+  ],
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Validation\\BrDocs\\": "src/"
+    }
+  }
+}
