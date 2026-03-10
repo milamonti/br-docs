@@ -3,15 +3,21 @@
   "description": "Validação de documentos brasileiros",
   "keywords": [
     "validation",
-    "br-docs",
-    "cpf",
-    "cnpj",
-    "cpfcnpj"
+    "br-docs"
   ],
   "license": "MIT",
+  "require": {
+    "php": ">=7.4"
+  },
   "autoload": {
     "psr-4": {
       "Validation\\BrDocs\\": "src/"
     }
-  }
+  },
+  "authors": [
+    {
+      "name": "Lorenzo Milamonti",
+      "email": "milamontilorenzo@gmail.com"
+    }
+  ]
 }
