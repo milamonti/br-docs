@@ -5,7 +5,7 @@ Biblioteca PHP para validação, formatação e geração de documentos brasilei
 ## Instalação
 
 ```bash
-composer require validation/br-docs
+composer require br-validation/docs
 ```
 
 ## Documentos Suportados
