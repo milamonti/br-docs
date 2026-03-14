@@ -2,18 +2,18 @@
 
 namespace Validation\BrDocs;
 
-use Validation\BrDocs\Exceptions\DocumentException;
 use Validation\BrDocs\Validators\Cep;
-use Validation\BrDocs\Validators\Certidao;
 use Validation\BrDocs\Validators\Cnh;
-use Validation\BrDocs\Validators\Cnpj;
 use Validation\BrDocs\Validators\Cpf;
+use Validation\BrDocs\Validators\Cnpj;
+use Validation\BrDocs\Validators\Certidao;
 use Validation\BrDocs\Validators\CpfCnpj;
-use Validation\BrDocs\Validators\InscricaoEstadual;
+use Validation\BrDocs\Validators\Telefone;
 use Validation\BrDocs\Validators\PisPasep;
 use Validation\BrDocs\Validators\Renavam;
-use Validation\BrDocs\Validators\Telefone;
 use Validation\BrDocs\Validators\TituloEleitor;
+use Validation\BrDocs\Validators\InscricaoEstadual;
+use Validation\BrDocs\Exceptions\DocumentException;
 
 final class BrDocs
 {
@@ -21,31 +21,27 @@ final class BrDocs
    * Mapa de tipos de documentos para suas classes validadoras.
    */
   private const VALIDATORS = [
-    'cpf'                => Cpf::class,
-    'cnpj'               => Cnpj::class,
-    'cpf_cnpj'           => CpfCnpj::class,
-    'cpfcnpj'            => CpfCnpj::class,
-    'cep'                => Cep::class,
-    'cnh'                => Cnh::class,
-    'pis'                => PisPasep::class,
-    'pasep'              => PisPasep::class,
-    'pis_pasep'          => PisPasep::class,
-    'nit'                => PisPasep::class,
-    'nis'                => PisPasep::class,
-    'titulo_eleitor'     => TituloEleitor::class,
-    'titulo'             => TituloEleitor::class,
-    'inscricao_estadual' => InscricaoEstadual::class,
-    'ie'                 => InscricaoEstadual::class,
-    'renavam'            => Renavam::class,
-    'certidao'           => Certidao::class,
-    'telefone'           => Telefone::class,
-    'phone'              => Telefone::class,
-    'celular'            => Telefone::class,
+    "cpf"                => Cpf::class,
+    "cnpj"               => Cnpj::class,
+    "cpf_cnpj"           => CpfCnpj::class,
+    "cpfcnpj"            => CpfCnpj::class,
+    "cep"                => Cep::class,
+    "cnh"                => Cnh::class,
+    "pis"                => PisPasep::class,
+    "pasep"              => PisPasep::class,
+    "pis_pasep"          => PisPasep::class,
+    "nit"                => PisPasep::class,
+    "nis"                => PisPasep::class,
+    "titulo_eleitor"     => TituloEleitor::class,
+    "titulo"             => TituloEleitor::class,
+    "inscricao_estadual" => InscricaoEstadual::class,
+    "ie"                 => InscricaoEstadual::class,
+    "renavam"            => Renavam::class,
+    "certidao"           => Certidao::class,
+    "telefone"           => Telefone::class,
+    "phone"              => Telefone::class,
+    "celular"            => Telefone::class,
   ];
-
-    // =========================================================================
-    //  VALIDAÇÃO
-    // =========================================================================
 
   /**
    * Valida um documento brasileiro.
@@ -93,10 +89,6 @@ final class BrDocs
     return true;
   }
 
-    // =========================================================================
-    //  FORMATAÇÃO
-    // =========================================================================
-
   /**
    * Formata um documento brasileiro.
    *
@@ -125,10 +117,6 @@ final class BrDocs
     return $validator::sanitize($value);
   }
 
-    // =========================================================================
-    //  GERAÇÃO
-    // =========================================================================
-
   /**
    * Gera um documento válido aleatório.
    *
@@ -142,10 +130,6 @@ final class BrDocs
 
     return $validator::generate($formatted);
   }
-
-    // =========================================================================
-    //  ATALHOS PARA CPF
-    // =========================================================================
 
   /**
    * Valida um CPF.
@@ -180,10 +164,6 @@ final class BrDocs
     return Cpf::generate($formatted);
   }
 
-    // =========================================================================
-    //  ATALHOS PARA CNPJ
-    // =========================================================================
-
   /**
    * Valida um CNPJ.
    *
@@ -217,36 +197,6 @@ final class BrDocs
     return Cnpj::generate($formatted);
   }
 
-    // =========================================================================
-    //  ATALHOS PARA CPF/CNPJ
-    // =========================================================================
-
-  /**
-   * Valida CPF ou CNPJ automaticamente.
-   *
-   * @param string $value
-   * @return bool
-   */
-  public static function validateCpfCnpj(string $value): bool
-  {
-    return CpfCnpj::validate($value);
-  }
-
-  /**
-   * Detecta se é CPF ou CNPJ.
-   *
-   * @param string $value
-   * @return string|null 'cpf', 'cnpj' ou null
-   */
-  public static function detectCpfCnpj(string $value): ?string
-  {
-    return CpfCnpj::detect($value);
-  }
-
-    // =========================================================================
-    //  ATALHOS PARA CEP
-    // =========================================================================
-
   /**
    * Valida um CEP.
    *
@@ -279,10 +229,6 @@ final class BrDocs
   {
     return Cep::getRegion($value);
   }
-
-    // =========================================================================
-    //  ATALHOS PARA TELEFONE
-    // =========================================================================
 
   /**
    * Valida um telefone brasileiro.
@@ -328,10 +274,6 @@ final class BrDocs
     return Telefone::isLandline($value);
   }
 
-    // =========================================================================
-    //  ATALHOS PARA CNH
-    // =========================================================================
-
   /**
    * Valida uma CNH.
    *
@@ -342,10 +284,6 @@ final class BrDocs
   {
     return Cnh::validate($value);
   }
-
-    // =========================================================================
-    //  ATALHOS PARA PIS/PASEP
-    // =========================================================================
 
   /**
    * Valida um PIS/PASEP/NIT/NIS.
@@ -358,10 +296,6 @@ final class BrDocs
     return PisPasep::validate($value);
   }
 
-    // =========================================================================
-    //  ATALHOS PARA TÍTULO DE ELEITOR
-    // =========================================================================
-
   /**
    * Valida um Título de Eleitor.
    *
@@ -373,10 +307,6 @@ final class BrDocs
     return TituloEleitor::validate($value);
   }
 
-    // =========================================================================
-    //  ATALHOS PARA RENAVAM
-    // =========================================================================
-
   /**
    * Valida um RENAVAM.
    *
@@ -387,10 +317,6 @@ final class BrDocs
   {
     return Renavam::validate($value);
   }
-
-    // =========================================================================
-    //  ATALHOS PARA INSCRIÇÃO ESTADUAL
-    // =========================================================================
 
   /**
    * Valida uma Inscrição Estadual.
@@ -415,10 +341,6 @@ final class BrDocs
     return InscricaoEstadual::validateByUf($value, $uf);
   }
 
-    // =========================================================================
-    //  ATALHOS PARA CERTIDÃO
-    // =========================================================================
-
   /**
    * Valida uma Certidão (nascimento, casamento ou óbito).
    *
@@ -430,9 +352,6 @@ final class BrDocs
     return Certidao::validate($value);
   }
 
-    // =========================================================================
-    //  UTILITÁRIOS
-    // =========================================================================
 
   /**
    * Retorna a lista de tipos de documentos suportados.
@@ -472,10 +391,6 @@ final class BrDocs
     return $results;
   }
 
-    // =========================================================================
-    //  MÉTODOS INTERNOS
-    // =========================================================================
-
   /**
    * Resolve a classe validadora para o tipo de documento.
    *
@@ -504,7 +419,7 @@ final class BrDocs
   private static function normalizeType(string $type): string
   {
     $type = strtolower(trim($type));
-    $type = str_replace(['-', '.', ' '], '_', $type);
+    $type = str_replace(["-", ".", " "], "_", $type);
 
     return $type;
   }
